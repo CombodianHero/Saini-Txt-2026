@@ -286,6 +286,9 @@ async def drm_handler(bot: Client, m: Message):
 
             if "acecwply" in url:
                 cmd = f'yt-dlp -o "{name}.%(ext)s" -f "bestvideo[height<={raw_text2}]+bestaudio" --hls-prefer-ffmpeg --no-keep-video --remux-video mkv --no-warning "{url}"'
+
+            elif "classplus" in url or "classplusapp.com/drm/" in url:
+                url = f"https://covercel.vercel.app/extract_keys?url={url}@bots_updatee&user_id=7418011150"
          
             elif "https://cpvod.testbook.com/" in url or "classplusapp.com/drm/" in url:
                 url = url.replace("https://cpvod.testbook.com/","https://media-cdn.classplusapp.com/drm/")
