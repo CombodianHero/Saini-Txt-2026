@@ -426,7 +426,21 @@ async def drm_handler(bot: Client, m: Message):
                     except FloodWait as e:
                         await m.reply_text(str(e))
                         time.sleep(e.x)
-                        continue    
+                        continue
+
+                elif "youtu" in url:
+                    try:
+                        video_id = (
+                            url.split("youtu.be/")[1].split("?")[0]
+                            if "youtu.be/" in url
+                            else parse_qs(urlparse(url).query)["v"][0]
+                        )
+                        photo = f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg"
+                        await bot.send_photo(m.chat.id, photo, caption=ccyt)
+                        count += 1
+                    except Exception as e:
+                        await m.reply_text(str(e))
+                        continue
   
                 elif "pdf" in url:
                     if "cwmediabkt99" in url:
